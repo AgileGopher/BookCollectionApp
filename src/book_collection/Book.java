@@ -15,11 +15,7 @@ public class Book {
 	private static final int MAX_YEAR_PUBLISHED = 2026;
 	
 	
-	// constructor
-	public Book() {
-		super();
-	}
-	
+	// constructor	
 	public Book(final int id, String title, String author, int yearPublished) {
 		super();
 		this.id = id;
@@ -27,7 +23,7 @@ public class Book {
 		this.title = title;
 		validateAuthor(author);
 		this.author = author;
-		yearPublished(yearPublished);
+		validateYear(yearPublished);
 		this.yearPublished = yearPublished;
 	}
 	
@@ -46,7 +42,7 @@ public class Book {
 		}
 	}
 	
-	private static void yearPublished(int year) {
+	private static void validateYear(int year) {
 		if(year < MIN_YEAR_PUBLISHED || year > MAX_YEAR_PUBLISHED) {
 			throw new IllegalArgumentException("Error!..  Invalid year published: " + year);
 		}
