@@ -1,10 +1,11 @@
 package book_collection;
 
+import java.time.Year;
 
 public class Book {
 	
 	// class fields
-	private int id;
+	private final int id;
 	private String title;
 	private String author;
 	private int yearPublished;
@@ -12,7 +13,8 @@ public class Book {
 	
 	// symbolic constants 
 	private static final int MIN_YEAR_PUBLISHED = 1450;
-	private static final int MAX_YEAR_PUBLISHED = 2026;
+	private static final int MAX_YEAR_PUBLISHED = Year.now().getValue();
+	private static final int MAX_INPUT_LENGTH   = 30; 
 	
 	
 	// constructor	
@@ -30,14 +32,14 @@ public class Book {
 	
 	// validations
 	private static void validateTitle(String title) {
-		if(title == null || title.isBlank()) {
+		if(title == null || title.isBlank() || title.length() > MAX_INPUT_LENGTH) {
 			throw new IllegalArgumentException("Error!..  Invalid title: " + title);
 		}
 	}
 	
 	// would of just make validateString for title and author but need different error messages
 	private static void validateAuthor(String author) {
-		if(author == null || author.isBlank()) {
+		if(author == null || author.isBlank() || author.length() > MAX_INPUT_LENGTH) {
 			throw new IllegalArgumentException("Error!..  Invalid author: " + author);   
 		}
 	}
@@ -70,8 +72,8 @@ public class Book {
 	
 	
 	// class methods
-	public void getDescription() {
-		System.out.println("Book description here...");
+	public String getDescription() {
+		return title + " by " + author + " (" + yearPublished + ")";
 	}
 
 	
