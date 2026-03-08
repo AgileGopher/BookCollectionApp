@@ -10,7 +10,7 @@ public class AudioBook extends LibraryItem {
 	
 	// symbolic constants
 	private static final int MIN_DURATION_MINUTES = 1;
-	private static final int MAX_DURATION_MINUTES = 90;
+	private static final int MAX_DURATION_MINUTES = 180;
 	
 	
 	
@@ -48,8 +48,7 @@ public class AudioBook extends LibraryItem {
 	
 	@Override
 	public String getDescription() {
-		// TODO Auto-generated method stub
-		return null;
+		return narrator + " (" + super.getBasicInfo() + "(" + durationMinutes + " minutes))";
 	}
 
 }
