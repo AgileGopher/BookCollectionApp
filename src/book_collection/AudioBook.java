@@ -26,7 +26,7 @@ public class AudioBook extends LibraryItem {
 	
 	
 	// validations
-	private void validateDuration(int duration) {
+	private static void validateDuration(int duration) {
 		if(duration < MIN_DURATION_MINUTES || duration > MAX_DURATION_MINUTES) {
 			throw new IllegalArgumentException("Error!..  Invalid duration: " + duration);
 		}

@@ -29,11 +29,4 @@ public class Book extends LibraryItem {
 	}
 
 
-	
-	// toString
-	@Override
-	public String toString() {
-		return "Book [author=" + author + "]";
-	}	
-
 }

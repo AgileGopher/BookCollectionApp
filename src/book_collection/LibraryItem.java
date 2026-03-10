@@ -5,7 +5,7 @@ import java.time.Year;
 public abstract class LibraryItem {
 
 	// class fields
-	private int id;
+	private final int id;
 	private String title;
 	private int yearPublished;
 	
@@ -33,10 +33,12 @@ public abstract class LibraryItem {
 	
 	// validations
 	private static void validateID(int id) {
-		
+		if(id < 1000 || id > 2000) {
+			throw new IllegalArgumentException("Error!..  Invalid id: " + id);
+		}
 	}
 	
-	public static void validateString(String string) {
+	protected static void validateString(String string) {
 		if(string == null || string.isBlank() || string.length() > MAX_INPUT_LENGTH) {
 			throw new IllegalArgumentException("Error!..  Invalid input: " + string);
 		}
