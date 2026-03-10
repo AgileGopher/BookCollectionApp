@@ -25,7 +25,7 @@ public class Book extends LibraryItem {
 	
 	// class methods
 	public String getDescription() {
-		return author + " (" + super.getBasicInfo() + ")";
+		return super.getBasicInfo() + " by " + author;
 	}
 
 
