@@ -24,7 +24,7 @@ public class LibraryManager {
 	
 	
 	
-	// class methods
+	// stores item in items
 	public void additem(LibraryItem item) {
 		if(item == null) {
 			throw new IllegalArgumentException("Error!..  cannot add item: " + item);
@@ -33,13 +33,36 @@ public class LibraryManager {
 	}
 	
 	
-	
+	// prints contents of Library
 	public void printLibrary() {
 		for(LibraryItem item : items) {
 			System.out.println(item.getDescription() + "\n");
 		}
 	}
 	
+	
+	// retrieve item
+	public LibraryItem getItem(LibraryItem item) {
+		for(LibraryItem i : items) {
+			if(i != item) {
+				throw new IllegalArgumentException("Error!.. Item does not exist in library: " + item);
+			}
+		}
+		return item;
+	}
+	
+	
+	// find item by id
+	public LibraryItem getItemByID(int id) {
+		LibraryItem item = null;
+		for(LibraryItem i : items) {
+			if(i.getId() != id) {
+				throw new IllegalArgumentException("Error!.. Item does not exist in library: " + item);
+			}
+			item = i;
+		}
+		return item;
+	}
 	
 	
 	
