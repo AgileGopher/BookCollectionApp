@@ -1,6 +1,6 @@
 package book_collection;
 
-public class AudioBook extends LibraryItem {
+public class AudioBook extends LibraryItem implements Searchable {
 	
 	// class fields
 	private String narrator;
@@ -49,6 +49,13 @@ public class AudioBook extends LibraryItem {
 	@Override
 	public String getDescription() {
 		return super.getBasicInfo() + " narrated by " + narrator + " (" + durationMinutes + " minutes)";
+	}
+
+
+
+	@Override
+	public boolean matches(String keyword) {
+		return getTitle().toLowerCase().contains(keyword.toLowerCase());
 	}
 
 }

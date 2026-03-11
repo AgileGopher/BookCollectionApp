@@ -87,7 +87,17 @@ public class LibraryManager {
 	
 	
 	
-	
+	// search by keyword
+	public void searchByKeyword(String keyword) {
+		for(LibraryItem item : items) {
+			if(item instanceof Searchable) {
+				Searchable searchable = (Searchable) item;
+				if(searchable.matches(keyword)){
+					System.out.println(item.getDescription());
+				}
+			}
+		}
+	}
 	
 	
 	

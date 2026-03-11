@@ -15,23 +15,10 @@ public class BookDriver {
 		manager.addItem(audio1);
 		
 		
-		manager.printLibrary();
-		
-		LibraryItem found = manager.findItemByID(1007);
-
-		if(found != null)
-		    System.out.println("Found: " + found.getDescription());
-		else
-		    System.out.println("Item not found.");
+		manager.searchByKeyword("el");
+	
 		
 		
-		System.out.println("Total items: " + manager.countItems());
-		
-		manager.sortByYear();
-		
-		manager.removeItemById(1002);
-		
-		manager.printLibrary();
 		
 		
 	}

@@ -1,6 +1,6 @@
 package book_collection;
 
-public class Book extends LibraryItem {
+public class Book extends LibraryItem implements Searchable {
 	
 	// class fields
 	private String author;
@@ -28,5 +28,11 @@ public class Book extends LibraryItem {
 		return super.getBasicInfo() + " by " + author;
 	}
 
+
+
+	@Override
+	public boolean matches(String keyword) {
+		return getTitle().toLowerCase().contains(keyword.toLowerCase());
+	}
 
 }
