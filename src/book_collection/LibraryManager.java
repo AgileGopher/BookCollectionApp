@@ -34,6 +34,38 @@ public class LibraryManager {
 	
 	
 	
+	// remove item by id
+	public boolean removeItemById(int id) {
+		boolean isRemoved = false;
+		while(isRemoved == false) {
+			for(LibraryItem item : items) {
+				if(item.getId() == id) {
+					items.remove(item);
+					isRemoved = true;
+					System.out.println("Item removed: " + item.getBasicInfo());
+				}
+			}
+		}
+		return isRemoved;
+	}
+	
+	
+	
+	// count items
+	public int countItems() {
+		return items.size();
+	}
+	
+	
+	
+	// sort by year
+	public void sortByYear() {
+		items.sort((a,b) -> a.getYearPublished() - b.getYearPublished());
+		System.out.println(items);
+	}
+	
+	
+	
 	// prints contents of Library
 	public void printLibrary() {
 		for(LibraryItem item : items) {

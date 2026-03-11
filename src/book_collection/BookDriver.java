@@ -6,13 +6,13 @@ public class BookDriver {
 		
 		LibraryItem b1     = new Book(1001, "Eragon", 2006, "Christhopher Paulini");
 		LibraryItem b2     = new Book(1002, "Eldest", 2007, "Christhopher Paulini");
-		LibraryItem audio1 = new AudioBook(1004, "Eragon", 2006, "Leanord Nemoy", 960);
+		LibraryItem audio1 = new AudioBook(1004, "Eragon", 2008, "Leanord Nemoy", 960);
 		
 
 		LibraryManager manager = new LibraryManager();
-		manager.additem(b1);
-		manager.additem(b2);
-		manager.additem(audio1);
+		manager.addItem(b1);
+		manager.addItem(b2);
+		manager.addItem(audio1);
 		
 		
 		manager.printLibrary();
@@ -23,6 +23,15 @@ public class BookDriver {
 		    System.out.println("Found: " + found.getDescription());
 		else
 		    System.out.println("Item not found.");
+		
+		
+		System.out.println("Total items: " + manager.countItems());
+		
+		manager.sortByYear();
+		
+		manager.removeItemById(1002);
+		
+		manager.printLibrary();
 		
 		
 	}
