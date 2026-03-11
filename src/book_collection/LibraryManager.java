@@ -25,12 +25,13 @@ public class LibraryManager {
 	
 	
 	// stores item in items
-	public void additem(LibraryItem item) {
+	public void addItem(LibraryItem item) {
 		if(item == null) {
 			throw new IllegalArgumentException("Error!..  cannot add item: " + item);
 		}
 		items.add(item);
 	}
+	
 	
 	
 	// prints contents of Library
@@ -39,29 +40,17 @@ public class LibraryManager {
 			System.out.println(item.getDescription() + "\n");
 		}
 	}
-	
-	
-	// retrieve item
-	public LibraryItem getItem(LibraryItem item) {
-		for(LibraryItem i : items) {
-			if(i != item) {
-				throw new IllegalArgumentException("Error!.. Item does not exist in library: " + item);
-			}
-		}
-		return item;
-	}
+
 	
 	
 	// find item by id
-	public LibraryItem getItemByID(int id) {
-		LibraryItem item = null;
-		for(LibraryItem i : items) {
-			if(i.getId() != id) {
-				throw new IllegalArgumentException("Error!.. Item does not exist in library: " + item);
+	public LibraryItem findItemByID(int id) {
+		for(LibraryItem item : items) {
+			if(item.getId() == id) {
+				return item;
 			}
-			item = i;
 		}
-		return item;
+		return null;
 	}
 	
 	
