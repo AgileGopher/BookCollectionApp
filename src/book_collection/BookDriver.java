@@ -16,12 +16,15 @@ public class BookDriver {
 		
 		
 		manager.searchByKeyword("el");
-	
 		
 		
-		
-		
+		if(audio1 instanceof Playable) {
+			((Playable) audio1).play();
+		}	
 	}
-	
-
 }
+
+
+
+// things to learn further
+// interfaces, lambda expressions, comparator

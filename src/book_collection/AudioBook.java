@@ -1,6 +1,6 @@
 package book_collection;
 
-public class AudioBook extends LibraryItem implements Searchable {
+public class AudioBook extends LibraryItem implements Searchable, Playable {
 	
 	// class fields
 	private String narrator;
@@ -57,5 +57,22 @@ public class AudioBook extends LibraryItem implements Searchable {
 	public boolean matches(String keyword) {
 		return getTitle().toLowerCase().contains(keyword.toLowerCase());
 	}
+
+
+
+	@Override
+	public void play() {
+		System.out.println("Playing audiobook..");
+		
+	}
+
+
+
+	@Override
+	public void stop() {
+		System.out.println("Stopping audiobook..");
+		
+	}
+
 
 }
