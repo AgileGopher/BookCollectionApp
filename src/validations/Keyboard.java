@@ -40,9 +40,40 @@ public class Keyboard {
 					System.out.println(errorMsg + "\n");
 				}
 			}
+			catch(NumberFormatException e) {
+				System.out.println(e.getMessage());
+			}
 		}
+		return num;
 	}
 	
+	
+	
+	public String readString(String promptMsg, String errorMsg) {
+		
+		String strInput = null;
+		boolean valid = false;
+		
+		while(valid == false) {
+			
+			System.out.println(promptMsg);
+			strInput = input.nextLine();
+			
+			try {
+				if(!(strInput == null) && !(strInput.isEmpty() && strInput.matches("^[a-z A-Z 0-9]*$"))) {
+					valid = true;
+					break;
+				}
+				else {
+					System.out.println(errorMsg + "\n");
+				}
+			}
+			catch(RuntimeException e) {
+				System.out.println(errorMsg);
+			}
+		}
+		return strInput;
+	}
 	
 	
 }
