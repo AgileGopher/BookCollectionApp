@@ -14,13 +14,12 @@ public class BookDriver {
 		manager.addItem(b2);
 		manager.addItem(audio1);
 		
+		//manager.saveLibrary("library.txt");
 		
-		manager.searchByKeyword("el");
+		LibraryManager manager2 = new LibraryManager();
 		
-		
-		if(audio1 instanceof Playable) {
-			((Playable) audio1).play();
-		}	
+		manager2.loadLibrary("library.txt");
+		manager2.printLibrary();
 	}
 }
 

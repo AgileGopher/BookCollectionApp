@@ -75,4 +75,12 @@ public class AudioBook extends LibraryItem implements Searchable, Playable {
 	}
 
 
+
+	@Override
+	public String serialize() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 }

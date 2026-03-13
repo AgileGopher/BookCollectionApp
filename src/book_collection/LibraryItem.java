@@ -78,6 +78,9 @@ public abstract class LibraryItem {
 	public abstract String getDescription();
 	
 	
+	public abstract String serialize();
+	
+	
 	
 	// toString
 	@Override

@@ -35,4 +35,15 @@ public class Book extends LibraryItem implements Searchable {
 		return getTitle().toLowerCase().contains(keyword.toLowerCase());
 	}
 
+
+
+	@Override
+	public String serialize() {
+		return "BOOK|" +
+				getId() + "|" +
+				getTitle() +  "|" +
+				getYearPublished() + "|" + 
+				author;
+	}
+
 }

@@ -39,17 +39,14 @@ public class LibraryManager {
 	
 	// remove item by id
 	public boolean removeItemById(int id) {
-		boolean isRemoved = false;
-		while(isRemoved == false) {
-			for(LibraryItem item : items) {
-				if(item.getId() == id) {
-					items.remove(item);
-					isRemoved = true;
-					System.out.println("Item removed: " + item.getBasicInfo());
-				}
+		for(int i = 0; i < items.size(); i ++) {
+			if(items.get(i).getId() == id) {
+				LibraryItem removed = items.remove(i);
+				System.out.println("Item removed: " + removed.getBasicInfo());
+				return true;
 			}
 		}
-		return isRemoved;
+		return false;
 	}
 	
 	
@@ -64,7 +61,6 @@ public class LibraryManager {
 	// sort items by year
 	public void sortByYear() {
 		items.sort((a,b) -> a.getYearPublished() - b.getYearPublished());
-		System.out.println(items);
 	}
 	
 	
@@ -93,8 +89,7 @@ public class LibraryManager {
 	// search item by keyword
 	public void searchByKeyword(String keyword) {
 		for(LibraryItem item : items) {
-			if(item instanceof Searchable) {
-				Searchable searchable = (Searchable) item;
+			if(item instanceof Searchable searchable) {
 				if(searchable.matches(keyword)){
 					System.out.println(item.getDescription());
 				}
@@ -144,7 +139,7 @@ public class LibraryManager {
 			while(scanner.hasNextLine()) {
 				
 				String line    = scanner.nextLine();
-				String[] parts = line.split("|");
+				String[] parts = line.split("\\|");
 				String type    = parts[0];
 				
 				if(type.equals("BOOK")) {
