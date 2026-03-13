@@ -1,4 +1,4 @@
-package book_collection;
+package data;
 
 import java.time.Year;
 

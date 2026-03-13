@@ -1,4 +1,7 @@
-package book_collection;
+package data;
+
+import interfaces.Playable;
+import interfaces.Searchable;
 
 public class AudioBook extends LibraryItem implements Searchable, Playable {
 	
@@ -79,7 +82,12 @@ public class AudioBook extends LibraryItem implements Searchable, Playable {
 	@Override
 	public String serialize() {
 		// TODO Auto-generated method stub
-		return null;
+		return "AUDIOBOOK|" +
+				getId() + "|" +
+				getTitle() + "|" +
+				getYearPublished() + "|" +
+				this.narrator + "|" +
+				this.durationMinutes;
 	}
 
 

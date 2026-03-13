@@ -1,4 +1,9 @@
-package book_collection;
+package driver;
+
+import data.AudioBook;
+import data.Book;
+import data.LibraryItem;
+import management.LibraryManager;
 
 public class BookDriver {
 
@@ -19,6 +24,7 @@ public class BookDriver {
 		LibraryManager manager2 = new LibraryManager();
 		
 		manager2.loadLibrary("library.txt");
+		manager2.sortByYear();
 		manager2.printLibrary();
 	}
 }

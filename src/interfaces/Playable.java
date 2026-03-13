@@ -1,4 +1,4 @@
-package book_collection;
+package interfaces;
 
 public interface Playable {
 	

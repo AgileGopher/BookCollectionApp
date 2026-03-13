@@ -1,4 +1,6 @@
-package book_collection;
+package data;
+
+import interfaces.Searchable;
 
 public class Book extends LibraryItem implements Searchable {
 	
@@ -43,7 +45,7 @@ public class Book extends LibraryItem implements Searchable {
 				getId() + "|" +
 				getTitle() +  "|" +
 				getYearPublished() + "|" + 
-				author;
+				this.author;
 	}
 
 }

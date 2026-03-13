@@ -1,10 +1,12 @@
-package book_collection;
+package management;
 
 import java.io.PrintWriter;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import data.LibraryItem;
+import interfaces.Searchable;
 
 public class LibraryManager {
 	
@@ -89,8 +91,8 @@ public class LibraryManager {
 	// search item by keyword
 	public void searchByKeyword(String keyword) {
 		for(LibraryItem item : items) {
-			if(item instanceof Searchable searchable) {
-				if(searchable.matches(keyword)){
+			if(item instanceof Searchable searchableItem) {
+				if(searchableItem.matches(keyword)){
 					System.out.println(item.getDescription());
 				}
 			}
@@ -102,29 +104,10 @@ public class LibraryManager {
 	public void saveLibrary(String filename) {
 		try(PrintWriter writer = new PrintWriter(filename)){
 			for(LibraryItem item : items) {
-				
-				if(item instanceof Book b) {
-					writer.println(
-						"BOOK|" +
-						b.getId() + "|" +
-						b.getTitle() + "|" +
-						b.getYearPublished() + "|" +
-						b.getAuthor()
-					);
-				}
-				
-				else if(item instanceof AudioBook a) {
-					writer.println(
-						"AUDIOBOOK|" +
-						a.getId() + "|" +
-						a.getTitle() + "|" +
-						a.getYearPublished() + "|" +
-						a.getNarrator() + "|" + 
-						a.getDurationMinutes()
-					);
-				}
+				writer.println(item.serialize());
 			}
-		}catch(Exception e) {
+		}
+		catch(Exception e) {
 			System.out.println("Error saving library: " + e.getMessage());
 		}
 	}
@@ -135,32 +118,10 @@ public class LibraryManager {
 	// loads library from a text file
 	public void loadLibrary(String filename) {
 		try(Scanner scanner = new Scanner(new File(filename))){
-			
 			while(scanner.hasNextLine()) {
-				
-				String line    = scanner.nextLine();
-				String[] parts = line.split("\\|");
-				String type    = parts[0];
-				
-				if(type.equals("BOOK")) {
-					
-					int id        = Integer.parseInt(parts[1]);
-					String title  = parts[2];
-					int year      = Integer.parseInt(parts[3]);
-					String author = parts[4];
-					
-					addItem(new Book(id, title, year, author));
-				}	
-				else if(type.equals("AUDIOBOOK")) {
-					
-					int id          = Integer.parseInt(parts[1]);
-					String title    = parts[2];
-					int year        = Integer.parseInt(parts[3]);
-					String narrator = parts[4];
-					int duration    = Integer.parseInt(parts[5]);
-					
-					addItem(new AudioBook(id, title, year, narrator, duration));
-				}
+				String line = scanner.nextLine();
+				LibraryItem item = LibraryItemFactory.createItem(line);
+				addItem(item);
 			}
 		}
 		catch(Exception e) {
