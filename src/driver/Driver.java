@@ -53,14 +53,54 @@ public class Driver {
 			switch(choice) {
 			
 				case 1:
+					//TODO addBook();
+					System.out.println("1");
+					break;
 					
-				
+				case 2:
+					//TODO addAudiobook();
+					System.out.println("2");
+					break;
+					
+				case 3:
+					//TODO
+					String keyword = "";
+					manager.searchByKeyword(keyword);
+					break;
+					
+				case 4:
+					manager.printLibrary();
+					break;
+					
+				case 5:
+					String saveFile      = null;
+					String savePromptMsg = "enter filename to be saved: \n";
+					String saveErrorMsg  = "Invalid filename";
+					saveFile = kb.readString(savePromptMsg, saveErrorMsg);
+					manager.saveLibrary(saveFile);
+					break;
+					
+				case 6:
+					// TODO
+					String loadFile = "";
+					manager.loadLibrary(loadFile);
+					break;
+					
+				case 7:
+					System.out.println("Bye for now!");
+					proceed = false;
+					break;
+					
+				default:
+					System.out.println(errorMsg + ":  " + choice);
 			}
 		}
 	}
 
 	
-	
+	private void addBook() {
+		
+	}
 	
 	
 	// main method

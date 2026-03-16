@@ -41,7 +41,7 @@ public class Keyboard {
 				}
 			}
 			catch(NumberFormatException e) {
-				System.out.println(e.getMessage());
+				System.out.println(errorMsg + "\n");
 			}
 		}
 		return num;
