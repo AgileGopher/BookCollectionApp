@@ -2,6 +2,7 @@ package driver;
 
 import data.AudioBook;
 import data.Book;
+import management.LibraryItemFactory;
 import management.LibraryManager;
 import validations.Keyboard;
 
@@ -141,6 +142,7 @@ public class Driver {
 	public static void main(String[] args) {
 		try {
 			Driver driver = new Driver();
+			LibraryItemFactory.createItem("BOOK|1009|1984|1949|George Orwell");
 			driver.init();
 		}
 		catch(Exception e) {
