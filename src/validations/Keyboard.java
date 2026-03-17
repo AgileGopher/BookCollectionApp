@@ -6,7 +6,7 @@ public class Keyboard {
 
 	
 	// fields
-	private static Scanner input;
+	private final Scanner input;
 	
 	
 	
@@ -18,7 +18,7 @@ public class Keyboard {
 	
 	
 	
-	// input validation methods
+	// method to validate user input for integer within a given range
 	public int readInteger(String promptMsg, String errorMsg, int low, int high) {
 		
 		int num = 0;
@@ -49,6 +49,33 @@ public class Keyboard {
 	
 	
 	
+	// method to validate user input for integer
+	public int readInteger(String promptMsg, String errorMsg) {
+		
+		int num = 0;
+		boolean valid = false;
+		String strInput;
+		
+		while(valid == false) {
+			
+			System.out.println(promptMsg);
+			strInput = input.nextLine();
+			
+			try {
+				num = Integer.parseInt(strInput);
+				valid = true;
+				break;
+			}
+			catch(NumberFormatException e) {
+				System.out.println(errorMsg + "\n");
+			}
+		}
+		return num;
+	}
+	
+	
+	
+	// method to validate user input for valid string
 	public String readString(String promptMsg, String errorMsg) {
 		
 		String strInput = null;
@@ -60,7 +87,7 @@ public class Keyboard {
 			strInput = input.nextLine();
 			
 			try {
-				if(!(strInput == null) && !(strInput.isEmpty() && strInput.matches("^[a-z A-Z 0-9]*$"))) {
+				if(strInput != null && !strInput.isBlank() && strInput.matches("^[a-z A-Z 0-9]*$")) {
 					valid = true;
 					break;
 				}

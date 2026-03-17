@@ -35,7 +35,7 @@ public class LibraryManager {
 			throw new IllegalArgumentException("Error!..  cannot add item: " + item);
 		}
 		items.add(item);
-		System.out.println("Item added: " + item);
+		System.out.println("Item added: " + item.getDescription());
 	}
 	
 	

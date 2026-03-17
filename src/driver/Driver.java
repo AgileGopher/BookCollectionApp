@@ -1,5 +1,7 @@
 package driver;
 
+import data.AudioBook;
+import data.Book;
 import management.LibraryManager;
 import validations.Keyboard;
 
@@ -20,23 +22,15 @@ public class Driver {
 	
 	
 	
-	// method to initialize program
-	private void init() {
-		manager.loadLibrary("library.txt");
-		runMainMenu();
-	}
-	
-	
-	
+	// method to run main menu
 	private void runMainMenu() {
-		
 		int choice;
 		boolean proceed = true;
 		
 		String promptMsg = "Make a selection: \n";
 		String errorMsg  = "Invalid entry, enter an intger value in the range (1-7): \n";
 		
-		while(proceed) {
+		while(proceed) {	
 			
 			System.out.println("------ Library Management System ------\n\n"
 			         + "-------------- Main Menu --------------\n"
@@ -45,45 +39,34 @@ public class Driver {
 			         + "3. Search\n"
 			         + "4. Print Library\n"
 			         + "5. Save\n"
-			         + "6. Load\n"
-			         + "7. Exit\n");
+			         + "6. Exit\n");
 			
-			choice = kb.readInteger(promptMsg, errorMsg, 1, 7);
+			choice = kb.readInteger(promptMsg, errorMsg, 1, 6);
 			
 			switch(choice) {
 			
-				case 1:
-					//TODO addBook();
-					System.out.println("1");
+				case 1: 
+					createBook();
 					break;
 					
-				case 2:
-					//TODO addAudiobook();
-					System.out.println("2");
+				case 2: 
+					createAudiobook();
 					break;
 					
-				case 3:
-					//TODO
-					String keyword = "";
-					manager.searchByKeyword(keyword);
+				case 3: 
+					searchKeyword();
 					break;
 					
-				case 4:
+				case 4: 
 					manager.printLibrary();
 					break;
 					
-				case 5:
-					String saveFile      = null;
-					String savePromptMsg = "enter filename to be saved: \n";
-					String saveErrorMsg  = "Invalid filename";
-					saveFile = kb.readString(savePromptMsg, saveErrorMsg);
-					manager.saveLibrary(saveFile);
+				case 5: 
+					saveAll();
 					break;
 					
 				case 6:
-					// TODO
-					String loadFile = "";
-					manager.loadLibrary(loadFile);
+					loadAll();
 					break;
 					
 				case 7:
@@ -98,16 +81,71 @@ public class Driver {
 	}
 
 	
-	private void addBook() {
-		
+	
+	// method to create new Book object from user input
+	private void createBook() {
+		int id            = kb.readInteger("enter book id (1000–2000): \n", "Invalid id, try again.. \n");
+		String title      = kb.readString("enter title: \n", "Invalid title, try again.. \n");
+		int yearPublished = kb.readInteger("enter year published: \n", "Invalid year, try again.. \n");
+		String author     = kb.readString("enter author: \n", "Invalid author, try again.. \n");
+		Book book = new Book(id,title,yearPublished,author);
+		manager.addItem(book);
 	}
+	
+	
+	
+	// method to create new AudioBook object from user input
+	private void createAudiobook() {
+		int id            = kb.readInteger("enter book id: \n", "Invalid id, try again.. \n");
+		String title      = kb.readString("enter title: \n", "Invalid title, try again.. \n");
+		int yearPublished = kb.readInteger("enter year published: \n", "Invalid year, try again.. \n");
+		String narrator   = kb.readString("enter narrator: \n", "Invalid narrator, try again.. \n");
+		int duration      = kb.readInteger("enter duration: \n", "Invalid duration, try again.. \n");
+		AudioBook audioBook = new AudioBook(id,title,yearPublished,narrator,duration);
+		manager.addItem(audioBook);
+	}
+	
+	
+	
+	// method to search library by keyword
+	private void searchKeyword() {
+		String keyword = kb.readString("enter keyword to search: \n", "Invalid keyword");
+		manager.searchByKeyword(keyword);
+	}
+	
+	
+	
+	private void loadAll(){
+		String loadFile = kb.readString("enter filename to be loaded: \n", "Invalid filename");
+		manager.loadLibrary(loadFile);
+	}
+	
+	
+	
+	// method to save file
+	private void saveAll() {
+		String saveFile = kb.readString("enter filename to be saved: \n", "Invalid filename");
+		manager.saveLibrary(saveFile);
+	}
+	
+	
+	
+	// method to initialize program
+	private void init() {
+		runMainMenu();
+	}
+	
 	
 	
 	// main method
 	public static void main(String[] args) {
-
-		Driver driver = new Driver();
-		driver.init();
+		try {
+			Driver driver = new Driver();
+			driver.init();
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	
