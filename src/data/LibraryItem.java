@@ -33,6 +33,7 @@ public abstract class LibraryItem {
 	
 	// validations
 	private static void validateID(int id) {
+		// TODO symbolic constants here
 		if(id < 1000 || id > 2000) {
 			throw new IllegalArgumentException("Error!..  Invalid id: " + id);
 		}
