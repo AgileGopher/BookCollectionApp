@@ -16,6 +16,9 @@ public abstract class LibraryItem {
 	private static final int MAX_YEAR_PUBLISHED = Year.now().getValue();
 	private static final int MAX_INPUT_LENGTH   = 30; 
 	
+	private static final int MIN_ID_VALUE  = 1000;
+	private static final int MAX_ID_VALUE  = 2000;
+	
 	
 	
 	// constructor
@@ -34,13 +37,13 @@ public abstract class LibraryItem {
 	// validations
 	private static void validateID(int id) {
 		// TODO symbolic constants here
-		if(id < 1000 || id > 2000) {
+		if(id < MIN_ID_VALUE || id > MAX_ID_VALUE) {
 			throw new IllegalArgumentException("Error!..  Invalid id: " + id);
 		}
 	}
 	
 	protected static void validateString(String string) {
-		if(string == null || string.isBlank() || string.length() > MAX_INPUT_LENGTH) {
+		if(string == null || string.isEmpty() || string.length() > MAX_INPUT_LENGTH) {
 			throw new IllegalArgumentException("Error!..  Invalid input: " + string);
 		}
 	}
