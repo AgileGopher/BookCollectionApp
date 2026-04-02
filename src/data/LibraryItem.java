@@ -36,7 +36,6 @@ public abstract class LibraryItem {
 	
 	// validations
 	private static void validateID(int id) {
-		// TODO symbolic constants here
 		if(id < MIN_ID_VALUE || id > MAX_ID_VALUE) {
 			throw new IllegalArgumentException("Error!..  Invalid id: " + id);
 		}
