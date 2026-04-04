@@ -3,6 +3,8 @@ package management;
 import java.io.PrintWriter;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 import data.LibraryItem;
@@ -11,7 +13,7 @@ import interfaces.Searchable;
 public class LibraryManager {
 	
 	// class fields
-	private List<LibraryItem>items;
+	private List<LibraryItem> items;
 	
 	
 	
@@ -19,37 +21,32 @@ public class LibraryManager {
 	public LibraryManager() {
 		items = new ArrayList<>();
 	}
-
-
-
-	// getters
-	public List<LibraryItem> getItems() {
-		return items;
-	}
 	
 	
 	
-	// stores item in items
-	public void addItem(LibraryItem item) {
+	// validations
+	private static void validateItem(LibraryItem item) {
 		if(item == null) {
 			throw new IllegalArgumentException("Error!..  cannot add item: " + item);
 		}
-		items.add(item);
-		System.out.println("Item added: " + item.getDescription());
 	}
 	
 	
 	
-	// remove item by id
-	public boolean removeItemById(int id) {
-		for(int i = 0; i < items.size(); i ++) {
-			if(items.get(i).getId() == id) {
-				LibraryItem removed = items.remove(i);
-				System.out.println("Item removed: " + removed.getBasicInfo());
-				return true;
-			}
-		}
-		return false;
+	// getters
+	public List<LibraryItem> getItems() {
+		return Collections.unmodifiableList(items);
+	}
+	
+	
+	
+	// class methods
+	
+	// stores item in items
+	public void addItem(LibraryItem item) {
+		validateItem(item);
+		items.add(item);
+		System.out.println("Item added: " + item.getDescription());
 	}
 	
 	
@@ -63,34 +60,53 @@ public class LibraryManager {
 	
 	// sort items by year
 	public void sortByYear() {
-		items.sort((a,b) -> a.getYearPublished() - b.getYearPublished());
+		items.sort(Comparator.comparingInt(LibraryItem::getYearPublished));
 	}
 	
 	
-	
+
 	// prints contents of Library
 	public void printLibrary() {
 		for(LibraryItem item : items) {
 			System.out.println(item.getDescription() + "\n");
 		}
 	}
-
+	
 	
 	
 	// find item by id
 	public LibraryItem findItemByID(int id) {
-		for(LibraryItem item : items) {
-			if(item.getId() == id) {
-				return item;
-			}
-		}
-		return null;
+		LibraryItem.validateID(id);
+		return items.stream()
+				.filter(item -> item.getId() == id)
+				.findFirst()
+				.orElseThrow(() -> new IllegalArgumentException("No LibraryItem found with that id: " + id)); 
 	}
 	
 	
 	
+	// TODO
+	// remove item by id
+	public boolean removeItemById(int id) {
+		LibraryItem.validateID(id);
+		
+		for(int i = 0; i < items.size(); i ++) {
+			if(items.get(i).getId() == id) {
+				LibraryItem removed = items.remove(i);
+				System.out.println("Item removed: " + removed.getBasicInfo());
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
+	
+	// TODO
 	// search item by keyword
 	public void searchByKeyword(String keyword) {
+		LibraryItem.validateString(keyword);
+		
 		for(LibraryItem item : items) {
 			if(item instanceof Searchable searchableItem) {
 				if(searchableItem.matches(keyword)){
@@ -99,6 +115,7 @@ public class LibraryManager {
 			}
 		}
 	}
+	
 	
 	
 	// saves library to a text file
@@ -112,7 +129,6 @@ public class LibraryManager {
 			System.out.println("Error saving library: " + e.getMessage());
 		}
 	}
-	
 	
 	
 	
@@ -131,5 +147,4 @@ public class LibraryManager {
 	}
 	
 	
-
 }

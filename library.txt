@@ -1,4 +1,1 @@
-BOOK|1001|Eragon|2006|Christhopher Paulini
-BOOK|1002|Eldest|2007|Christhopher Paulini
-AUDIOBOOK|1004|Eragon|2008|Leanord Nemoy|960
-BOOK|1006|neuromancer|1984|william gibson
+BOOK|1001|eragon|2006|paulo nutini

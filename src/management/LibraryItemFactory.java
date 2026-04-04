@@ -16,6 +16,7 @@ public class LibraryItemFactory {
 	
 	
 	
+	// static initializer
 	static {
 		registry.put("BOOK", parts -> {
 			// TODO symbolic constants for these int values

@@ -2,6 +2,7 @@ package driver;
 
 import data.AudioBook;
 import data.Book;
+import data.LibraryItem;
 import management.LibraryItemFactory;
 import management.LibraryManager;
 import validations.Keyboard;
@@ -40,9 +41,10 @@ public class Driver {
 			         + "3. Search\n"
 			         + "4. Print Library\n"
 			         + "5. Save\n"
-			         + "6. Exit\n");
+			         + "6. load\n"
+			         + "7. Exit\n");
 			
-			choice = kb.readInteger(promptMsg, errorMsg, 1, 6);
+			choice = kb.readInteger(promptMsg, errorMsg, 1, 7);
 			
 			switch(choice) {
 			
@@ -110,8 +112,9 @@ public class Driver {
 	
 	// method to search library by keyword
 	private void searchKeyword() {
-		String keyword = kb.readString("enter keyword to search: \n", "Invalid keyword");
-		manager.searchByKeyword(keyword);
+		int keyword = kb.readInteger("enter keyword to search: \n", "Invalid keyword");
+		LibraryItem item = manager.findItemByID(keyword);
+		System.out.println(item.getDescription());
 	}
 	
 	

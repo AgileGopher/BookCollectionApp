@@ -87,7 +87,7 @@ public class Keyboard {
 			strInput = input.nextLine();
 			
 			try {
-				if(strInput != null && !strInput.isBlank() && strInput.matches("^[a-z A-Z 0-9]*$")) {
+				if(strInput != null && !strInput.isBlank() && strInput.matches("^[\\w\\-.\\\\/: ]+$")) {
 					valid = true;
 					break;
 				}

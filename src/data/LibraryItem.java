@@ -35,13 +35,13 @@ public abstract class LibraryItem {
 	
 	
 	// validations
-	private static void validateID(int id) {
+	public static void validateID(int id) {
 		if(id < MIN_ID_VALUE || id > MAX_ID_VALUE) {
 			throw new IllegalArgumentException("Error!..  Invalid id: " + id);
 		}
 	}
 	
-	protected static void validateString(String string) {
+	public static void validateString(String string) {
 		if(string == null || string.isEmpty() || string.length() > MAX_INPUT_LENGTH) {
 			throw new IllegalArgumentException("Error!..  Invalid input: " + string);
 		}
