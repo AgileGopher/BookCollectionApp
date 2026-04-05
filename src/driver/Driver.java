@@ -99,20 +99,25 @@ public class Driver {
 	
 	// method to create new AudioBook object from user input
 	private void createAudiobook() {
-		int id            = kb.readInteger("enter book id: \n", "Invalid id, try again.. \n");
-		String title      = kb.readString("enter title: \n", "Invalid title, try again.. \n");
-		int yearPublished = kb.readInteger("enter year published: \n", "Invalid year, try again.. \n");
-		String narrator   = kb.readString("enter narrator: \n", "Invalid narrator, try again.. \n");
-		int duration      = kb.readInteger("enter duration: \n", "Invalid duration, try again.. \n");
-		AudioBook audioBook = new AudioBook(id,title,yearPublished,narrator,duration);
-		manager.addItem(audioBook);
+		try {
+			int id            = kb.readInteger("enter book id: \n", "Invalid id, try again.. \n");
+			String title      = kb.readString("enter title: \n", "Invalid title, try again.. \n");
+			int yearPublished = kb.readInteger("enter year published: \n", "Invalid year, try again.. \n");
+			String narrator   = kb.readString("enter narrator: \n", "Invalid narrator, try again.. \n");
+			int duration      = kb.readInteger("enter duration: \n", "Invalid duration, try again.. \n");
+			AudioBook audioBook = new AudioBook(id,title,yearPublished,narrator,duration);
+			manager.addItem(audioBook);
+		}
+		catch(IllegalArgumentException e) {
+			System.out.println("error, try again..");
+		}
 	}
 	
 	
 	
 	// method to search library by keyword
 	private void searchKeyword() {
-		int keyword = kb.readInteger("enter keyword to search: \n", "Invalid keyword");
+		int keyword = kb.readInteger("enter keyword to search: \n", "Invalid keyword", 1001, 2000);
 		LibraryItem item = manager.findItemByID(keyword);
 		System.out.println(item.getDescription());
 	}

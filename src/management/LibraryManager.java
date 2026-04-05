@@ -71,6 +71,21 @@ public class LibraryManager {
 			System.out.println(item.getDescription() + "\n");
 		}
 	}
+
+	
+
+	// remove item by id
+	public boolean removeItemById(int id) {
+		LibraryItem.validateID(id);
+		for(int i = 0; i < items.size(); i ++) {
+			if(items.get(i).getId() == id) {
+				LibraryItem removed = items.remove(i);
+				System.out.println("Item removed: " + removed.getBasicInfo());
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	
 	
@@ -84,29 +99,10 @@ public class LibraryManager {
 	}
 	
 	
-	
-	// TODO
-	// remove item by id
-	public boolean removeItemById(int id) {
-		LibraryItem.validateID(id);
-		
-		for(int i = 0; i < items.size(); i ++) {
-			if(items.get(i).getId() == id) {
-				LibraryItem removed = items.remove(i);
-				System.out.println("Item removed: " + removed.getBasicInfo());
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	
-	
-	// TODO
+
 	// search item by keyword
 	public void searchByKeyword(String keyword) {
 		LibraryItem.validateString(keyword);
-		
 		for(LibraryItem item : items) {
 			if(item instanceof Searchable searchableItem) {
 				if(searchableItem.matches(keyword)){
