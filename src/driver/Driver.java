@@ -2,7 +2,6 @@ package driver;
 
 import data.AudioBook;
 import data.Book;
-import data.LibraryItem;
 import management.LibraryItemFactory;
 import management.LibraryManager;
 import validations.Keyboard;
@@ -117,9 +116,8 @@ public class Driver {
 	
 	// method to search library by keyword
 	private void searchKeyword() {
-		int keyword = kb.readInteger("enter keyword to search: \n", "Invalid keyword", 1001, 2000);
-		LibraryItem item = manager.findItemByID(keyword);
-		System.out.println(item.getDescription());
+		String keyword = kb.readString("enter keyword to search: \n", "Invalid keyword");
+		manager.searchByKeyword(keyword);
 	}
 	
 	
