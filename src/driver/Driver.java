@@ -16,7 +16,6 @@ public class Driver {
 	
 	// constructor
 	public Driver() {
-		super();
 		manager = new LibraryManager();
 		kb      = new Keyboard();
 	}
