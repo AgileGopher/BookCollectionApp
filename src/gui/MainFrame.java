@@ -17,15 +17,6 @@ public class MainFrame extends JFrame {
 	
 	LibraryManager manager = new LibraryManager();
 	
-
-	public static void main(String[] args) {
-		
-		MainFrame frame = new MainFrame();
-		frame.setVisible(true);
-
-	}
-
-	
 	
 	public MainFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -33,34 +24,48 @@ public class MainFrame extends JFrame {
 		setLocationRelativeTo(null);
 		setResizable(false);
 				
-		JPanel panel = new JPanel();
+		JPanel panel           = new JPanel();
+		JTextField titleField  = new JTextField(20);
+		JButton addButton      = new JButton("Add Book");
+		JTextArea outputArea   = new JTextArea(10, 30);
+		JScrollPane scrollPane = new JScrollPane(outputArea);
 		
-		JTextField titleField = new JTextField(20);
-		JButton addButton     = new JButton("Add Book");
-		JTextArea outputArea  = new JTextArea(10, 30);
-		
+		outputArea.setEditable(false);
 		panel.add(titleField);
 		panel.add(addButton);
-		outputArea.setEditable(false);
-		JScrollPane scrollPane = new JScrollPane(outputArea);
 		panel.add(scrollPane);
 		add(panel);
 		
 		addButton.addActionListener(e -> {
 			String title = titleField.getText();
 			if(title == null || title.isBlank()) {
-				JOptionPane.showMessageDialog(null, "Please choose!");
+				JOptionPane.showMessageDialog(null, "Please enter a title!");
+				return;
 			}
 			else {
 				Book book = new Book(1001, title, 2000, "Unknown");
 				manager.addItem(book);
-			}
-			outputArea.setText("");
-			for(LibraryItem item : manager.getItems()) {
-				outputArea.append(item.getDescription() + "\n");
+				refreshOutput(outputArea);
 			}
 		});
 	}
 	
+	
+	
+	private void refreshOutput(JTextArea outputArea) {
+		outputArea.setText("");
+		for(LibraryItem item : manager.getItems()) {
+			outputArea.append(item.getDescription() + "\n");
+		}
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		
+		MainFrame frame = new MainFrame();
+		frame.setVisible(true);
+
+	}
 	
 }
