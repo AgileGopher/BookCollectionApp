@@ -1,5 +1,7 @@
 package gui;
 
+import java.awt.EventQueue;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -61,11 +63,20 @@ public class MainFrame extends JFrame {
 	
 	
 	
+	/**
+	 * Launch the application.
+	 */
 	public static void main(String[] args) {
-		
-		MainFrame frame = new MainFrame();
-		frame.setVisible(true);
-
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MainFrame frame = new MainFrame();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 	
 }
