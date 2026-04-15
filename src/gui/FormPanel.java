@@ -73,46 +73,58 @@ public class FormPanel extends JPanel {
 	
 	
 	
-	
-	public JTextField getIdField() {
-		return idField;
+	// getters
+	public int getId() {
+		return Integer.parseInt(idField.getText());
 	}
 
 	
-	public JTextField getTitleField() {
-		return titleField;
+	public String getTitleField() {
+		return titleField.getText();
 	}
 
 	
-	public JTextField getYearField() {
-		return yearField;
+	public int getYearField() {
+		return Integer.parseInt(yearField.getText());
 	}
 
 	
-	public JTextField getAuthorField() {
-		return authorField;
+	public String getAuthorField() {
+		return authorField.getText();
 	}
 
 
-	public JTextField getNarratorField() {
-		return narratorField;
+	public String getNarratorField() {
+		return narratorField.getText();
 	}
 	
 
-	public JTextField getDurationField() {
-		return durationField;
+	public int getDurationField() {
+		return Integer.parseInt(durationField.getText());
 	}
 
 
-	public JTextField getSearchField() {
-		return searchField;
+	public String getSearchField() {
+		return searchField.getText();
 	}
 
 
 	
 
-	public void addAddBookListener(ActionListener listener) {
+	public void addBookListener(ActionListener listener) {
 		addBookButton.addActionListener(listener);
 	}
+	
+	
+	public void addAudioListener(ActionListener listener) {
+		addAudioButton.addActionListener(listener);
+	}
+
+	
+	public void addSearchListener(ActionListener listener) {
+		searchButton.addActionListener(listener);
+	}
+	
+	
 
 }
