@@ -1,23 +1,19 @@
 package gui;
 
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 import data.Book;
-import data.LibraryItem;
 import management.LibraryManager;
 
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame {
 	
 	LibraryManager manager = new LibraryManager();
+	private FormPanel formPanel;
+	private OutputPanel outputPanel;
 	
 	
 	public MainFrame() {
@@ -26,41 +22,37 @@ public class MainFrame extends JFrame {
 		setLocationRelativeTo(null);
 		setResizable(false);
 				
-		JPanel panel           = new JPanel();
-		JTextField titleField  = new JTextField(20);
-		JButton addButton      = new JButton("Add Book");
-		JTextArea outputArea   = new JTextArea(10, 30);
-		JScrollPane scrollPane = new JScrollPane(outputArea);
+		manager     = new LibraryManager();
+		formPanel   = new FormPanel();
+		outputPanel = new OutputPanel();
 		
-		outputArea.setEditable(false);
-		panel.add(titleField);
-		panel.add(addButton);
-		panel.add(scrollPane);
-		add(panel);
+		setLayout(new BorderLayout());
+		add(formPanel, BorderLayout.NORTH);
+		add(outputPanel, BorderLayout.CENTER);
 		
-		addButton.addActionListener(e -> {
-			String title = titleField.getText();
+		wireEvents();
+	}
+	
+	
+	
+	private void wireEvents() {
+		
+		formPanel.addAddBookListener(e -> {
+			
+			String title = formPanel.getTitleInput();
+			
 			if(title == null || title.isBlank()) {
-				JOptionPane.showMessageDialog(null, "Please enter a title!");
+				JOptionPane.showMessageDialog(this, "Enter a title");
 				return;
 			}
-			else {
-				Book book = new Book(1001, title, 2000, "Unknown");
-				manager.addItem(book);
-				refreshOutput(outputArea);
-			}
+			
+			Book book = new Book(1001, title, 2000, "Unknown");
+			manager.addItem(book);
+			
+			outputPanel.displayItems(manager.getItems());
 		});
 	}
-	
-	
-	
-	private void refreshOutput(JTextArea outputArea) {
-		outputArea.setText("");
-		for(LibraryItem item : manager.getItems()) {
-			outputArea.append(item.getDescription() + "\n");
-		}
-	}
-	
+
 	
 	
 	/**
