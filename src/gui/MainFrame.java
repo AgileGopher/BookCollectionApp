@@ -38,18 +38,20 @@ public class MainFrame extends JFrame {
 	private void wireEvents() {
 		
 		formPanel.addBookListener(e -> {
-			
-			String title = formPanel.getTitleField();
-			
-			if(title == null || title.isBlank()) {
-				JOptionPane.showMessageDialog(this, "Enter a title");
-				return;
+			try {
+				Book book = new Book(
+					formPanel.getId(),
+					formPanel.getTitleField(),
+					formPanel.getYearField(),
+					formPanel.getAuthorField()
+				);
+				
+				manager.addItem(book);
+				outputPanel.displayItems(manager.getItems());
 			}
-			
-			Book book = new Book(1001, title, 2000, "Unknown");
-			manager.addItem(book);
-			
-			outputPanel.displayItems(manager.getItems());
+			catch(Exception ex) {
+				JOptionPane.showMessageDialog(this, ex.getMessage());
+			}
 		});
 	}
 

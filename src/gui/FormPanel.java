@@ -75,6 +75,7 @@ public class FormPanel extends JPanel {
 	
 	// getters
 	public int getId() {
+		// TODO validation
 		return Integer.parseInt(idField.getText());
 	}
 
@@ -85,6 +86,7 @@ public class FormPanel extends JPanel {
 
 	
 	public int getYearField() {
+		// TODO validation
 		return Integer.parseInt(yearField.getText());
 	}
 
@@ -100,6 +102,7 @@ public class FormPanel extends JPanel {
 	
 
 	public int getDurationField() {
+		// TODO validation
 		return Integer.parseInt(durationField.getText());
 	}
 
@@ -124,8 +127,6 @@ public class FormPanel extends JPanel {
 	public void addSearchListener(ActionListener listener) {
 		searchButton.addActionListener(listener);
 	}
-	
-	
 	
 	
 
