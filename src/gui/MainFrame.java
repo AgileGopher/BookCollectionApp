@@ -37,9 +37,9 @@ public class MainFrame extends JFrame {
 	
 	private void wireEvents() {
 		
-		formPanel.addAddBookListener(e -> {
+		formPanel.addBookListener(e -> {
 			
-			String title = formPanel.getTitleInput();
+			String title = formPanel.getTitleField();
 			
 			if(title == null || title.isBlank()) {
 				JOptionPane.showMessageDialog(this, "Enter a title");
