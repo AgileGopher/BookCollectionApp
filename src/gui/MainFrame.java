@@ -44,8 +44,7 @@ public class MainFrame extends JFrame {
 					formPanel.getTitleField(),
 					formPanel.getYearField(),
 					formPanel.getAuthorField()
-				);
-				
+				);	
 				manager.addItem(book);
 				outputPanel.displayItems(manager.getItems());
 			}
