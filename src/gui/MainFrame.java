@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import data.AudioBook;
 import data.Book;
 import management.LibraryManager;
 
@@ -51,6 +52,24 @@ public class MainFrame extends JFrame {
 			catch(Exception ex) {
 				JOptionPane.showMessageDialog(this, ex.getMessage());
 			}
+		});
+		
+		
+		formPanel.addAudioListener(e -> {
+			try {
+				AudioBook audio = new AudioBook(
+						formPanel.getId(),
+						formPanel.getTitleField(),
+						formPanel.getYearField(),
+						formPanel.getNarratorField(),
+						formPanel.getDurationField()
+				);
+				manager.addItem(audio);
+				outputPanel.displayItems(manager.getItems());
+			}
+			catch(Exception ex) {
+				JOptionPane.showMessageDialog(this, ex.getMessage());
+			}	
 		});
 	}
 
